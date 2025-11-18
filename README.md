@@ -103,7 +103,11 @@ fTetWild now provides Python bindings for easy integration into Python projects!
 ### Quick Python Installation
 
 ```bash
-pip install .
+# Step 1: Install dependencies first (conda recommended)
+conda install -c conda-forge gmp eigen tbb pybind11 numpy
+
+# Step 2: Install ftetwild
+pip install . -v
 ```
 
 ### Quick Python Example
@@ -127,6 +131,8 @@ tet_vertices, tet_elements = ftetwild.tetrahedralize(vertices, faces, params)
 📖 **For complete Python documentation, see [PYTHON.md](PYTHON.md)**
 
 📂 **For Python examples, see the [examples/](examples/) directory**
+
+⚠️ **Build Error?** See [QUICK_FIX.md](QUICK_FIX.md) - Most issues are due to missing GMP/Eigen dependencies
 
 ## Usage
 
