@@ -1,0 +1,45 @@
+[build-system]
+requires = [
+    "setuptools>=42",
+    "wheel",
+    "pybind11>=2.6.0",
+    "numpy>=1.15.0",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ftetwild"
+version = "1.0.0"
+description = "Fast Tetrahedral Meshing in the Wild - Python Bindings"
+readme = "README.md"
+requires-python = ">=3.6"
+license = {text = "MPL-2.0"}
+authors = [
+    {name = "Yixin Hu", email = "yixin.hu@nyu.edu"},
+    {name = "Teseo Schneider"},
+]
+keywords = ["tetrahedral", "meshing", "geometry", "mesh generation"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering",
+    "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+
+dependencies = [
+    "numpy>=1.15.0",
+]
+
+[project.optional-dependencies]
+examples = ["meshio>=4.0.0"]
+
+[project.urls]
+Homepage = "https://github.com/wildmeshing/fTetWild"
+Repository = "https://github.com/wildmeshing/fTetWild"

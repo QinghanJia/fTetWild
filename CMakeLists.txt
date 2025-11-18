@@ -47,6 +47,7 @@ option(FLOAT_TETWILD_ENABLE_TBB "Enable TBB" ON)
 option(FLOAT_TETWILD_USE_FLOAT "Use floats instead of double" OFF)
 option(FLOAT_TETWILD_WITH_SANITIZERS "Use sanitizers" OFF)
 option(FLOAT_TETWILD_WITH_EXACT_ENVELOPE "Use exact envelope" OFF)
+option(FLOAT_TETWILD_WITH_PYTHON "Build Python bindings" OFF)
 
 # Sanitizer options
 option(SANITIZE_ADDRESS "Sanitize Address" OFF)
@@ -181,4 +182,9 @@ if(FLOAT_TETWILD_TOPLEVEL_PROJECT)
     include(CTest)
     enable_testing()
     add_subdirectory(tests)
+endif()
+
+# Python bindings
+if(FLOAT_TETWILD_WITH_PYTHON)
+    add_subdirectory(python)
 endif()

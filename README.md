@@ -96,6 +96,38 @@ conda install -c conda-forge mpir
 ```
 This command should show a list of fTetWild parameters.
 
+## Python Interface
+
+fTetWild now provides Python bindings for easy integration into Python projects!
+
+### Quick Python Installation
+
+```bash
+pip install .
+```
+
+### Quick Python Example
+
+```python
+import numpy as np
+import ftetwild
+
+# Your surface mesh (vertices and faces)
+vertices = np.array([...])  # Shape: (n, 3)
+faces = np.array([...])     # Shape: (m, 3)
+
+# Set parameters
+params = ftetwild.Parameters()
+params.ideal_edge_length_rel = 0.05
+
+# Generate tetrahedral mesh
+tet_vertices, tet_elements = ftetwild.tetrahedralize(vertices, faces, params)
+```
+
+📖 **For complete Python documentation, see [PYTHON.md](PYTHON.md)**
+
+📂 **For Python examples, see the [examples/](examples/) directory**
+
 ## Usage
 
 ### Input/output Format
