@@ -48,8 +48,10 @@ class CMakeBuild(build_ext):
 
         cmake_args += ['-DCMAKE_BUILD_TYPE=' + cfg]
 
-        # Parallel build
-        build_args += ['--', '-j4']
+        # Parallel build - use all available cores
+        import multiprocessing
+        num_jobs = max(1, multiprocessing.cpu_count())
+        build_args += ['--', '-j{}'.format(num_jobs)]
 
         env = os.environ.copy()
         env['CXXFLAGS'] = '{} -DVERSION_INFO=\\"{}\\"'.format(
@@ -59,8 +61,21 @@ class CMakeBuild(build_ext):
         if not os.path.exists(self.build_temp):
             os.makedirs(self.build_temp)
 
+        print("=" * 60)
+        print("CMake configuration step...")
+        print("Build directory:", self.build_temp)
+        print("CMake args:", cmake_args)
+        print("=" * 60)
+
         subprocess.check_call(['cmake', ext.sourcedir] + cmake_args,
                             cwd=self.build_temp, env=env)
+
+        print("=" * 60)
+        print("Building ftetwild Python module...")
+        print("Using {} parallel jobs".format(num_jobs))
+        print("This may take several minutes...")
+        print("=" * 60)
+
         subprocess.check_call(['cmake', '--build', '.', '--target', 'ftetwild'] + build_args,
                             cwd=self.build_temp)
 

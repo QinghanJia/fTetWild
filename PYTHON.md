@@ -17,26 +17,44 @@ The Python bindings provide a simple, intuitive interface to fTetWild's powerful
 
 ### Install from Source
 
-#### Option 1: Using pip (Recommended)
+#### Option 1: Quick Install Script (Easiest)
 
 ```bash
 # Clone the repository
 git clone https://github.com/wildmeshing/fTetWild.git
 cd fTetWild
 
+# Run the quick install script
+./quick_install.sh
+```
+
+#### Option 2: Using pip with conda (Recommended)
+
+```bash
 # Install dependencies (conda)
 conda install -c conda-forge eigen gmp tbb pybind11 numpy
 
-# Or using apt (Linux)
+# Install the package (will take 10-30 minutes on first install)
+pip install . -v
+
+# Or in development mode
+pip install -e . -v
+```
+
+#### Option 3: Using apt (Linux)
+
+```bash
+# Install system dependencies
 sudo apt-get install libeigen3-dev libgmp-dev libtbb-dev
 pip install pybind11 numpy
 
 # Install the package
-pip install .
-
-# Or in development mode
-pip install -e .
+pip install . -v
 ```
+
+**⚠️ Important**: The first build takes 10-30 minutes because it compiles C++ dependencies. This is normal! Use the `-v` flag to see progress.
+
+**💡 Troubleshooting**: If the build seems stuck, see [INSTALL_PYTHON.md](INSTALL_PYTHON.md) for detailed help.
 
 #### Option 2: Using CMake directly
 
@@ -381,13 +399,28 @@ from scipy.spatial import Delaunay  # For comparison
 
 ## Troubleshooting
 
+### Build Issues
+
+**Build seems stuck or takes forever:**
+
+The first build takes **10-30 minutes** - this is normal! See [INSTALL_PYTHON.md](INSTALL_PYTHON.md) for:
+- Detailed installation guide
+- How to monitor build progress
+- Expected build times
+- Common error solutions
+
+**Quick diagnostics:**
+```bash
+python3 diagnose_build.py
+```
+
 ### Import Error
 
 ```
 ImportError: No module named 'ftetwild'
 ```
 
-**Solution:** Ensure package is installed: `pip install .`
+**Solution:** Ensure package is installed: `pip install . -v`
 
 ### Build Failures
 
@@ -408,6 +441,9 @@ conda install -c conda-forge eigen
 # Ubuntu/Debian
 sudo apt-get install libeigen3-dev
 ```
+
+**Out of memory during build:**
+See [INSTALL_PYTHON.md](INSTALL_PYTHON.md#out-of-memory) for solutions.
 
 ### Runtime Issues
 
